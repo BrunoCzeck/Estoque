@@ -2,7 +2,7 @@
 
 session_start(); // inicia a sessão da mensagem de cadastro
 include_once("conexao.php");
-
+include('navbar.html');
 
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 $result_produto = "SELECT * FROM post WHERE id = '$id'";
@@ -12,94 +12,25 @@ $resultado_produtos = mysqli_query($conn, $result_produto);
 
 <!DOCTYPE html>
 <html lang ="pt-br">
-<head>
-  <style>
-	* {
-		font-family: Sans-serif ; 
-		
-	}
-	
-	body { 
-		background-image: linear-gradient(to right,#C1CDC1, #32CD32);	
-	
-	}
-
-	hr {
-
-		background-color: silver;
-	}
-	
-
-	</style>
-		<title>Lista</title>	
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>	
-		
+	<head>
+		</style>
+			<title>Lista</title>	
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="js/jquery.js"></script>
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>	
+			<script src="js/bootstrap.bundle.js"></script>
+			<script src="js/bootstrap.js"></script>
 	</head>	
-	<body>
-	
-	<script src="js/bootstrap.bundle.js"></script>
-	<script src="js/bootstrap.js"></script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a href="form.php">
-<img src="img/campotvlogo.png" class="rounded mx-auto d-block">
-	</a>
-	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-		</button>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			<li class="nav-item">
-			<a class="nav-link" style="padding: 15px;" href="form_saida.php"> Saída de Equipamento </a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" aria-current="page" style="padding: 15px;" href="quantidadestoque.php"> Quantidade em Estoque </a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" style="padding: 15px;" href="listar.php"> Lista de Produtos </a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" style="padding: 15px;" href="buscarapida.php"> Busca por Unidade </a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" style="padding: 15px;" href="nf_table.php"> Nota Fiscal </a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" style="padding: 15px;" href="index.php"> Sair </a>
-			</li>     
-		</ul>
-		
-
-	
-<!-- <form class="d-flex" style="margin-left: 5px;" method="POST" action="saida_produto.php">
-		<input class="form-control me-2" type="search" name="pesquisar" placeholder="Código de Barras" aria-label="Search">
-		<button class="btn btn-outline-success" type="submit">Pesquisar</button>
-    </form>
---> 
-	</div>
-    </div>
-  </div>
-</nav>
-
-
-
-		
-
-
+<body>
 <div class="container-fluid" style="margin-top: 15px;">
-<nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to right,#C1CDC1, #32CD32);"> 
-  <a class="navbar-brand"></a>
-<form class="form-inline" style="margin-left: 5px;" method="POST" action="saida_produto.php">
-		<input class="form-control mr-sm-2"  type="search" name="pesquisar" placeholder="Código de Barras" aria-label="Search">
+	<form class="form-inline" method="POST" action="saida_produto.php">
+		<input class="form-control mr-3"  type="search" name="pesquisar" placeholder="Código de Barras" aria-label="Search">
 		<button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background:silver; color: black;">Pesquisar</button>
     </form>
-	</div>
-    </div>
-  </div>
+	<hr>	
+</div>
 </nav>
 		
 		

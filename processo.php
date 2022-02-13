@@ -25,9 +25,9 @@ $resultado_quantidade = mysqli_query($conn, $result_quantidade);
 if(mysqli_affected_rows($conn)){
 	$_SESSION['msg'] = "<p style='color:green;'>Produto Cadastrado!</p>";
 	header("Location: form.php");
-}else{
+}
+else{
 	$_SESSION['msg'] = "<p style='color:red;'>Produto Não Cadastrado!</p>";
 	header("Location: form.php");
 }
-
 ?>

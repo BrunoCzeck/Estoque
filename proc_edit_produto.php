@@ -17,13 +17,10 @@ $sub_categorias_post_id = $_POST['selSub'];
 //echo "Produto: $produto <br>";
 //echo "Quantidade: $quantidade <br>";
 
-
 $result_produto = "UPDATE post SET etiqueta='$etiqueta', codigo='$codigo', produto='$produto', situacao='$situacao', 
 empresa='$empresa', nome_categoria='$nome_categoria', 
 sub_categorias_post_id='$sub_categorias_post_id', modified=NOW() WHERE id='$id'";
 $resultado_produto = mysqli_query($conn, $result_produto);
-
-
 
 // Cadastra e redireciona. 
 if(mysqli_affected_rows($conn)){

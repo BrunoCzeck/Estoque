@@ -2,6 +2,7 @@
 
 session_start(); // inicia a sessão da mensagem de cadastro
 include("conexao.php");
+include('navbar.html');
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 //$id = $_GET['id'];
 $result_produto = "SELECT * FROM post WHERE id = '$id'";
@@ -33,15 +34,10 @@ $nome_categoria = $row_produto['nome_categoria'];
 $sqlOrg = "SELECT * FROM categorias_post ORDER BY nome_categoria";
 $result_org = mysqli_query($conn, $sqlOrg);
 
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="PT-BR">
-
-
 <head>
 	<title>Editar</title>
 	<meta charset="utf-8">
@@ -50,149 +46,34 @@ $result_org = mysqli_query($conn, $sqlOrg);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
-	<!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script>	-->
-	<style>
-		* {
-			font-family: Sans-serif;
-
-		}
-
-		body{
-
-			background-image: linear-gradient(to right,#C1CDC1, #32CD32);	
-	
-		}
-	</style>
-</head>
-
-<body>
 	<script src="js/bootstrap.bundle.js"></script>
 	<script src="js/bootstrap.js"></script>
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<a href="form.php">
-	<img src="img/campotvlogo.png" class="rounded mx-auto d-block">
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" style="padding: 15px;" href="form_saida.php"> Saída de Equipamento </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" style="padding: 15px;" aria-current="page" href="quantidadestoque.php"> Quantidade em Estoque </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" style="padding: 15px;" href="listar.php"> Lista de Produtos </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" style="padding: 15px;" href="buscarapida.php"> Busca por Unidade </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" style="padding: 15px;" href="upload/nf_cadastro.php"> Nota Fiscal </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" style="padding: 15px;" href="index.php"> Sair </a>
-					</li>
-				</ul>
-
-			</div>
-		</div>
-	</nav>
-
-
+</head>
+<body>
 	<?php
-
 	if (isset($_SESSION['msg'])) {
 		echo $_SESSION['msg'];
 		unset($_SESSION['msg']);
 	}
-
 	?>
-
-
 	<div class="container">
 		<div class="col">
 			<form method="POST" action="proc_edit_produto.php" style="margin-top: 15px;">
-
-
 				<input type="hidden" class="form-group" name="id" value="<?php echo $row_produto['id'] ?>">
-
+	
 				<div class="form-group">
 					<label for="codigo"> Código de Barra </label>
 					<input class="form-control" type="text" name="codigo" value="<?php echo $row_produto['codigo'] ?>" readonly="true">
 				</div>
-
+				
 				<div class="form-group">
 					<label for="etiqueta"> Etiqueta </label>
 					<input class="form-control" type="text" name="etiqueta" value="<?php echo $row_produto['etiqueta'] ?>" readonly="true">
 				</div>
-
-				<!-- <label> Organização : </label>		 
-		<select name="selOrg">
-
-			<//?php
-		 	echo "<option value='$nome_categoria'>$nome_categoria</option>";
-			echo "<option value=''>------------------- </option>";
-			while ($row_org = mysqli_fetch_array($result_org)) {
-				$nome_categoria = $row_org['nome_categoria'];
-				echo "<option value='$nome_categoria'>$nome_categoria</option>";
-			}
-			?>
-
-		</select>
-		<br>
-
-		-->
-
-
-				<!-- <div class="form-group">
-					<label> Organização </label>
-					<select class="form-control" name="selOrg"> -->
-			<?php
-				/* if($nome_categoria == '1'):
-					echo "<option value='$nome_categoria'>Dasa</option>";						
-					if($nome_categoria == '2'):						
-						echo "<option value='$nome_categoria'>Sicredi</option>";						
-						elseif($nome_categoria == '3') : 
-							echo "<option value='$nome_categoria'>Sicoob</option>";			
-					endif;
-				endif;
-			 */
-					/* echo "<option value=''> $nome_categoria </option>";
-						// echo "<option value='$nome_categoria'> $nome_categoria </option>";
-						echo "<option value=''> ------------------------ </option>";
-						while ($row_org = mysqli_fetch_array($result_org)) {
-							$nome_categoria = $row_org['nome_categoria'];
-							echo "<option value='$nome_categoria'> $nome_categoria </option>";
-						} */
-					
-						?>
-						
-					</select>
-				</div>
-
-
-				<!-- 
-					<//?php  
-
-				$result_cat_post = "SELECT * FROM categorias_post ORDER by nome_categoria";
-				$resultado_cat_post = mysqli_query($conn, $result_cat_post);
-				while ($row_cat_post = mysqli_fetch_assoc($resultado_cat_post)) {
-				echo '<option value="' . $row_cat_post['id'] . '">' .$row_cat_post['nome_categoria'] . '</option>'; 
-				}
 		
-					?>
--->
-
-
 				<div class="form-group">
 					<label> Unidade </label>
 					<select class="form-control" name="selSub">
-
 						<?php
 						echo "<option value='$sub_categorias_post_id'>$sub_categorias_post_id</option>";
 						echo "<option value=''>------------------- </option>";
@@ -201,18 +82,11 @@ $result_org = mysqli_query($conn, $sqlOrg);
 							echo "<option value='$sub_categorias_post_id'>$sub_categorias_post_id</option>";
 						}
 						?>
-
 					</select>
 				</div>
-
-				<!--<label for="local"> Unidade | Agência: </label>
-		<input type="text" name="local" value="<//?php echo $row_produto['sub_categorias_post_id'] ?>">
-		<br> -->
-
 				<div class="form-group">
 					<label> Produto </label>
 					<select class="form-control" name="selProduto">
-
 						<?php
 						echo "<option value='$produto'>$produto</option>";
 						echo "<option value=''>------------------- </option>";
@@ -221,20 +95,11 @@ $result_org = mysqli_query($conn, $sqlOrg);
 							echo "<option value='$produto'>$produto</option>";
 						}
 						?>
-
 					</select>
 				</div>
-
-				<!-- <label for="produto"> Produto: </label>
-		<input type="text" name="produto" value="<//?php echo $row_produto['produto'] ?>"> -->
-
-				<!--  <label for="situacao"> Situação: </label>
-				  <input type="text" name="situacao" value="<//?php echo $row_produto['situacao']?>"> 
-				  <br> -->
 				<div class="form-group">
 					<label> Situação </label>
 					<select class="form-control" name="selSituacao">
-
 						<?php
 						echo "<option value='$situacao'>$situacao</option>";
 						echo "<option value=''>------------------- </option>";
@@ -243,16 +108,11 @@ $result_org = mysqli_query($conn, $sqlOrg);
 							echo "<option value='$situacao'>$situacao</option>";
 						}
 						?>
-
 					</select>
 				</div>
-				<!--<label for="empresa"> Empresa: </label>
-				  <input type="text" name="empresa" value="<//?php echo $row_produto['empresa']?>"> 
-				  -->
 				<div class="form-group">
 					<label>Empresa</label>
 					<select class="form-control" name="selEmpresa">
-
 						<?php
 						echo "<option value='$empresa'>$empresa</option>";
 						echo "<option value=''>------------------- </option>";
@@ -261,23 +121,17 @@ $result_org = mysqli_query($conn, $sqlOrg);
 							echo "<option value='$empresa'>$empresa</option>";
 						}
 						?>
-
 					</select>
 				</div>
 				<div class="form-group" style="text-align:center;">
-					<button type="submit" class="btn" style="height: 50px; width: 220px;">Editar</button>
+					<button 
+					type="submit" class="btn" style="height: 50px; width: 220px;">Editar
+					</button>
 				</div>
-		</div>
-
+					</div>
 	</div>
-
-
-
-
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
 	</form>
 </body>
-
 </html>
